@@ -36,7 +36,7 @@ public class Runner {
 		// now JOP the answer
 		// then JOP "Do you want to enter another 0-255 Yes or No"
 		String again = JOptionPane.showInputDialog("Do you want to enter another 0-255? Yes or No");
-		if (again.equals("Yes")) {
+		if (again.toUpperCase().equals("YES")) {
 			myRunner.main(args);
 		}
 		// place this in a loop, keep looping as long as they answer Yes
@@ -46,21 +46,26 @@ public class Runner {
 	private int enterInteger() {
 		// code for you to complete
 		// for basic test return 0 (hex 00), or 255 (hex FF)
-		int entInt = 255;
-		String entStr = JOptionPane.showInputDialog("Enter an integer between 0 - 255 ");
-		try {
-			entInt = Integer.parseInt(entStr);
-		}catch(NumberFormatException ex) {
-			JOptionPane.showMessageDialog(null, "Error, input is not an integer");
-			enterInteger();
-		}
-		if (entInt < 0 || entInt > 255) {
-			JOptionPane.showMessageDialog(null, "Error, input out of range, please input a new input");
-			enterInteger();
-		}else {
-			return entInt;
-		}
-		return 255;
+		int entInt = 0;
+		boolean test = false;
+		do {
+		String entStr = JOptionPane.showInputDialog("Enter an integer between 0 - 255 ");		
+			try {
+				entInt = Integer.parseInt(entStr);
+				test = true;
+				if (entInt < 0 || entInt > 255) {
+					// JOP "Error, range outside of 0-255, please try again
+					JOptionPane.showMessageDialog(null, "Error, range outside of 0-255, please try again");
+					test = false;
+				}
+			}catch (NumberFormatException ex) {
+				JOptionPane.showMessageDialog(null, "Error, input is not an integer");
+				test = false;
+			}
+		} while(test!=true);
+		return entInt;
+
+		
 		
 	}
 
