@@ -64,6 +64,7 @@ public class Runner {
 		
 	}
 
+
 	private void welcome() {
 		JOptionPane.showMessageDialog(null,
 				"Welcome, this program converts base-10 integers " + "between 0-255 to hexadecimal");
