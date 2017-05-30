@@ -46,8 +46,14 @@ public class Runner {
 	private int enterInteger() {
 		// code for you to complete
 		// for basic test return 0 (hex 00), or 255 (hex FF)
+		int entInt = 0;
 		String entStr = JOptionPane.showInputDialog("Enter an integer between 0 - 255 ");
-		int entInt = Integer.parseInt(entStr);
+		try {
+			entInt = Integer.parseInt(entStr);
+		}catch(NumberFormatException ex) {
+			JOptionPane.showMessageDialog(null, "Error, input is not an integer");
+			enterInteger();
+		}
 		if (entInt < 0 || entInt > 255) {
 			JOptionPane.showMessageDialog(null, "Error, input out of range, please input a new input");
 			enterInteger();
